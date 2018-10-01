@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.mr.assignment.mappers.NumberMapper">
+    <resultMap id="NumberResultMap" type="PhoneNumber">
+        <id column="number" property="number" />
+        <result column="status" property="status" jdbcType="VARCHAR"/>
+    </resultMap>
+
+    <select id="findAllNumbers" resultMap="NumberResultMap">
+        select * from Phone_Number
+    </select>
+    <select id="findNumberById" resultMap="NumberResultMap">
+        select * from Phone_Number WHERE number=#{id}
+    </select>
+    <insert id="insertNumber" parameterType="PhoneNumber">
+        insert into Phone_Number(number, status) values(#{number}, 0)
+    </insert>
+    <update id="updateNumber" parameterType="PhoneNumber">
+        update Phone_Number set status = #{status} where number = #{number}
+    </update>
+</mapper>

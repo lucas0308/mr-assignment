@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.mr.assignment.mappers.HistoryMapper">
+    <resultMap id="HistoryResultMap" type="NumberHistory">
+        <id column="id" property="id" />
+        <result column="number" property="number"/>
+        <result column="description" property="description" jdbcType="VARCHAR"/>
+    </resultMap>
+
+    <select id="findAllHistory" resultMap="HistoryResultMap">
+        select * from Number_History
+    </select>
+    <select id="findHistoryByNumber" resultMap="HistoryResultMap">
+        select * from Number_History WHERE number=#{id}
+    </select>
+    <insert id="insertHistory" parameterType="NumberHistory">
+        insert into Number_History(number, description, created) values(#{number}, #{description}, current_timestamp)
+    </insert>
+</mapper>
